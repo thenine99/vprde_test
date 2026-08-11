@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPU RDE Facilities, Partners & Extensions Map | OVPRDE</title>
+
+  <!-- Google Font: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS for Map rendering -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    /* =========================================================
+       CPU BRAND COLOR SCHEME & STYLES (Light Mode Friendly)
+       ========================================================= */
+    :root {
+      --cpu-blue: #002B66;       /* Deep CPU Blue */
+      --cpu-gold: #F2C111;       /* CPU Gold */
+      --cpu-gold-light: #FFF8E1; /* Soft Light Gold background accent */
+      --bg-light: #F8F9FA;       /* Clean Light Background */
+      --text-dark: #1F2937;      /* High contrast dark text */
+      --text-muted: #6B7280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* =========================================================
+       1. ANIMATED LOADING SCREEN
+       ========================================================= */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid var(--cpu-gold-light);
+      border-top: 6px solid var(--cpu-blue);
+      border-right: 6px solid var(--cpu-gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* =========================================================
+       2. HEADER & BRANDING (Times New Roman for Header Title)
+       ========================================================= */
+    header {
+      background-color: var(--cpu-blue);
+      color: #FFFFFF;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 4px solid var(--cpu-gold);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      gap: 20px;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* EDIT LOGO PATH HERE */
+    .brand-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 50%;
+      padding: 2px;
+    }
+
+    /* SPECIFIC REQUIREMENT: Times New Roman for Header Font */
+    .brand-text h1, .brand-text h2 {
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .brand-text h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cpu-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-text h2 {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #FFFFFF;
+    }
+
+    /* Top Right Header Actions: Search Bar & Contacts Button */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--cpu-gold);
+      border-radius: 20px;
+      padding: 4px 12px;
+      width: 220px;
+      transition: all 0.3s ease;
+    }
+
+    .search-box:focus-within {
+      width: 280px;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 8px rgba(242, 193, 17, 0.6);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 4px 6px;
+      font-size: 0.82rem;
+      color: var(--text-dark);
+      width: 100%;
+    }
+
+    .search-box svg {
+      fill: var(--cpu-blue);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .header-btn {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border: 1px solid var(--cpu-gold);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .header-btn svg {
+      fill: var(--cpu-gold);
+      width: 15px;
+      height: 15px;
+      transition: fill 0.2s ease;
+    }
+
+    .header-btn:hover {
+      background-color: var(--cpu-gold);
+      color: var(--cpu-blue);
+    }
+
+    .header-btn:hover svg {
+      fill: var(--cpu-blue);
+    }
+
+    /* =========================================================
+       3. MAIN CONTENT CONTAINER
+       ========================================================= */
+    #content-container {
+      flex: 1;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- HOME DASHBOARD VIEW WITH EDITABLE BACKGROUND --- */
+    #home-view {
+      display: block;
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      padding: 24px;
+      position: relative;
+      background: 
+        linear-gradient(rgba(0, 43, 102, 0.75), rgba(0, 43, 102, 0.75)),
+        url('background.png') center/cover no-repeat;
+    }
+
+    .home-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-summary {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 24px;
+      border-radius: 10px;
+      border-left: 6px solid var(--cpu-gold);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-summary h3 {
+      color: var(--cpu-blue);
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .hero-summary p {
+      color: var(--text-dark);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    /* Action Buttons inside HOME */
+    .home-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .home-action-btn {
+      background-color: var(--cpu-blue);
+      color: var(--cpu-gold);
+      border: 2px solid var(--cpu-gold);
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .home-action-btn:hover {
+      background-color: var(--cpu-gold);
+      color: var(--cpu-blue);
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .metric-card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 1px solid #E5E7EB;
+      border-top: 4px solid var(--cpu-gold);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .metric-card .title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cpu-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .metric-card .value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--cpu-blue);
+      margin-bottom: 4px;
+    }
+
+    .metric-card .subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* --- MAP VIEW WITH LARGER TITLES AND HEAVY BORDER --- */
+    #map-view {
+      display: none;
+      height: 100%;
+      width: 100%;
+      flex-direction: column;
+    }
+
+    /* LARGER MAP TITLE BANNER WITH BORDER */
+    .map-header-container {
+      padding: 12px 24px;
+      background-color: #FFFFFF;
+      border-bottom: 3px solid var(--cpu-blue);
+    }
+
+    .map-header-title {
+      background-color: var(--cpu-gold-light);
+      color: var(--cpu-blue);
+      padding: 12px 20px;
+      font-size: 1.35rem; /* Larger Title Font */
+      font-weight: 800;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 3px solid var(--cpu-blue); /* Distinct Border */
+      border-radius: 6px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    #map {
+      flex: 1;
+      width: 100%;
+    }
+
+    /* =========================================================
+       4. FOOTER NAVIGATION BAR WITH BUTTONS
+       ========================================================= */
+    footer {
+      background-color: var(--cpu-blue);
+      border-top: 3px solid var(--cpu-gold);
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 8px;
+    }
+
+    .footer-btn {
+      flex: 1;
+      background-color: transparent;
+      color: #FFFFFF;
+      border: 1px solid transparent;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .footer-btn:hover {
+      background-color: rgba(242, 193, 17, 0.15);
+      color: var(--cpu-gold);
+    }
+
+    .footer-btn.active {
+      background-color: var(--cpu-gold);
+      color: var(--cpu-blue);
+      border-color: var(--cpu-gold);
+    }
+
+    .copyright-bar {
+      background-color: rgba(0, 0, 0, 0.2);
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      padding: 4px;
+      font-size: 0.72rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .search-box {
+        width: 60%;
+      }
+      .search-box:focus-within {
+        width: 70%;
+      }
+      .map-header-title {
+        font-size: 1.05rem;
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. LOADING PAGE ANIMATION -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <h3 style="color: var(--cpu-blue); font-family: 'Times New Roman', Times, serif;">Central Philippine University</h3>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Loading OVPRDE Dashboard & Map...</p>
+  </div>
+
+  <!-- 2. HEADER & BRANDING (TIMES NEW ROMAN) -->
+  <header>
+    <div class="brand-container">
+      <!-- EDITABLE LOGO: CPU Main Seal -->
+      <img src="https://cpu.edu.ph/wp-content/uploads/2019/04/seal2.jpg" alt="CPU Logo" class="brand-logo" id="cpu-logo" />
+      
+      <div class="brand-text">
+        <h1>Central Philippine University</h1>
+        <h2>Office of the Vice President for Research, Development, and Extension (OVPRDE)</h2>
+      </div>
+    </div>
+
+    <!-- TOP RIGHT HEADER ACTIONS: SEARCH BAR & CONTACTS BUTTON WITH ICON -->
+    <div class="header-actions">
+      <!-- Search Bar -->
+      <div class="search-box">
+        <input type="text" id="map-search-input" placeholder="Search facilities, sites..." onkeypress="handleSearch(event)" />
+        <svg viewBox="0 0 24 24" onclick="executeSearch()">
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+      </div>
+
+      <!-- Contacts Button with Icon -->
+      <button class="header-btn" onclick="openContacts()">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        <span>Contacts</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 3. MAIN CONTENT DISPLAY -->
+  <div id="content-container">
+
+    <!-- HOME PAGE SUMMARY DASHBOARD WITH EDITABLE BACKGROUND IMAGE -->
+    <div id="home-view">
+      <div class="home-wrapper">
+        <section class="hero-summary">
+          <h3>Research, Development, and Extension Summary</h3>
+          <p>
+            Overview of Central Philippine University's RDE accomplishments, campus research facilities, 
+            active extension sites, institutional partners, research grants, and awards managed under the Office of the Vice President for Research, Development, and Extension.
+          </p>
+
+          <!-- BUTTONS INSIDE HOME -->
+          <div class="home-actions">
+            <button class="home-action-btn" onclick="triggerView('campus')">Explore CPU Campus Facilities Map</button>
+            <button class="home-action-btn" onclick="triggerView('extensions')">Explore Extensions Map</button>
+            <button class="home-action-btn" onclick="triggerView('partners')">Explore Partners Map</button>
+          </div>
+        </section>
+
+        <!-- EDITABLE METRICS / NUMBERS SUMMARY -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="title">RDE Facilities</div>
+            <div class="value">24</div>
+            <div class="subtitle">Laboratories, centers, & campus units</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="title">Extension Projects</div>
+            <div class="value">15</div>
+            <div class="subtitle">Active community sites & initiatives</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="title">Partner Institutions</div>
+            <div class="value">32</div>
+            <div class="subtitle">Local, national, & international partners</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="title">Income Generated</div>
+            <div class="value">₱12.5M</div>
+            <div class="subtitle">From RDE operations & commercialization</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="title">Grants Received</div>
+            <div class="value">₱45.8M</div>
+            <div class="subtitle">Total institutional funding & research grants</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="title">RDE Awards</div>
+            <div class="value">18</div>
+            <div class="subtitle">National & international recognitions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP VIEW WITH BORDERED & LARGER TITLE BANNER ABOVE MAP -->
+    <div id="map-view">
+      <div class="map-header-container">
+        <div id="map-title-banner" class="map-header-title">
+          CPU Campus Facilities Map
+        </div>
+      </div>
+
+      <div id="map"></div>
+    </div>
+
+  </div>
+
+  <!-- 4. FOOTER NAVIGATION BAR WITH BUTTONS -->
+  <footer>
+    <nav class="footer-nav">
+      <button class="footer-btn active" id="btn-home" onclick="switchView('home', this)">
+        Home
+      </button>
+      <button class="footer-btn" id="btn-campus" onclick="switchView('campus', this)">
+        CPU Campus Facilities
+      </button>
+      <button class="footer-btn" id="btn-extensions" onclick="switchView('extensions', this)">
+        Extensions
+      </button>
+      <button class="footer-btn" id="btn-partners" onclick="switchView('partners', this)">
+        Partners
+      </button>
+    </nav>
+    <div class="copyright-bar">
+      &copy; Office of the Vice President for Research, Development, and Extension | Central Philippine University
+    </div>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Leaflet KML Parser Plugin -->
+  <script src="https://unpkg.com/leaflet-kml/L.KML.js"></script>
+
+  <script>
+    /* =========================================================
+       5. JAVASCRIPT: MAP INITIALIZATION & VIEW CONTROLS
+       ========================================================= */
+
+    // Hide loading screen
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loading-screen');
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.visibility = 'hidden', 600);
+    });
+
+    // CPU Coordinates
+    const CPU_LAT = 10.7302;
+    const CPU_LNG = 122.5484;
+
+    let map = null;
+    let campusGroup, extensionsGroup, partnersGroup;
+
+    function initMap() {
+      if (map !== null) return; // Initialize once
+
+      map = L.map('map').setView([CPU_LAT, CPU_LNG], 15);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors | Central Philippine University'
+      }).addTo(map);
+
+      campusGroup = L.layerGroup().addTo(map);
+      extensionsGroup = L.layerGroup().addTo(map);
+      partnersGroup = L.layerGroup().addTo(map);
+
+      /* ---------------------------------------------------------
+         EDIT HERE: LOAD YOUR KML FILE(S)
+         --------------------------------------------------------- */
+
+      const cpuIcon = L.icon({
+        iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34]
+      });
+
+      // Sample Demo Markers
+      L.marker([10.7302, 122.5484], {icon: cpuIcon})
+        .bindPopup("<b>CPU Main Campus - OVPRDE Office</b><br>Central Philippine University, Jaro, Iloilo City")
+        .addTo(campusGroup);
+
+      L.marker([10.7450, 122.5550], {icon: cpuIcon})
+        .bindPopup("<b>Community Extension Site</b><br>RDE Agricultural Demonstration Field")
+        .addTo(extensionsGroup);
+
+      L.marker([10.7100, 122.5600], {icon: cpuIcon})
+        .bindPopup("<b>RDE Partner Institution</b><br>Iloilo Innovation & Research Hub")
+        .addTo(partnersGroup);
+    }
+
+    // Trigger View from inside Home buttons
+    function triggerView(view) {
+      const targetBtn = document.getElementById('btn-' + view);
+      if (targetBtn) switchView(view, targetBtn);
+    }
+
+    // View Switcher (Home vs Map Views & Map Titles)
+    function switchView(view, element) {
+      const buttons = document.querySelectorAll('.footer-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+
+      const homeView = document.getElementById('home-view');
+      const mapView = document.getElementById('map-view');
+      const mapTitleBanner = document.getElementById('map-title-banner');
+
+      if (view === 'home') {
+        homeView.style.display = 'block';
+        mapView.style.display = 'none';
+      } else {
+        homeView.style.display = 'none';
+        mapView.style.display = 'flex';
+
+        initMap();
+        setTimeout(() => map.invalidateSize(), 100);
+
+        map.removeLayer(campusGroup);
+        map.removeLayer(extensionsGroup);
+        map.removeLayer(partnersGroup);
+
+        if (view === 'campus') {
+          mapTitleBanner.innerText = "CPU Campus Facilities Map";
+          map.addLayer(campusGroup);
+          map.setView([CPU_LAT, CPU_LNG], 16);
+        } else if (view === 'extensions') {
+          mapTitleBanner.innerText = "Community Extensions Map";
+          map.addLayer(extensionsGroup);
+          map.setView([10.7450, 122.5550], 14);
+        } else if (view === 'partners') {
+          mapTitleBanner.innerText = "Partner Institutions Map";
+          map.addLayer(partnersGroup);
+          map.setView([10.7100, 122.5600], 14);
+        }
+      }
+    }
+
+    // Search Functions
+    function handleSearch(event) {
+      if (event.key === 'Enter') {
+        executeSearch();
+      }
+    }
+
+    function executeSearch() {
+      const query = document.getElementById('map-search-input').value.trim();
+      if (query) {
+        alert("Searching for: " + query + "\n\nThis will filter and zoom to matching facilities in your KML file.");
+      }
+    }
+
+    // Contacts Popup Modal / Alert
+    function openContacts() {
+      alert(
+        "Office of the Vice President for Research, Development, and Extension (OVPRDE)\n\n" +
+        "📍 Central Philippine University, Jaro, Iloilo City, Philippines 5000\n" +
+        "✉️ Email: ovprde@cpu.edu.ph\n" +
+        "📞 Telephone: (033) 329-1971 local 2108"
+      );
+    }
+  </script>
+</body>
+</html>
