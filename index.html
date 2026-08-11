@@ -618,17 +618,21 @@
         popupAnchor: [1, -34]
       });
 
-      L.marker([10.7302, 122.5484], {icon: cpuIcon})
-        .bindPopup("<b>CPU Main Campus - OVPRDE Office</b><br>Central Philippine University, Jaro, Iloilo City")
-        .addTo(campusGroup);
-
-      L.marker([10.7450, 122.5550], {icon: cpuIcon})
-        .bindPopup("<b>Community Extension Site</b><br>RDE Agricultural Demonstration Field")
-        .addTo(extensionsGroup);
-
-      L.marker([10.7100, 122.5600], {icon: cpuIcon})
-        .bindPopup("<b>RDE Partner Institution</b><br>Iloilo Innovation & Research Hub")
-        .addTo(partnersGroup);
+      // 1. Enter the exact filename of your KML file here:
+fetch('extensions.kmz') 
+  .then(response => response.text())
+  .then(kmlData => {
+    // 2. Read the KML file
+    const parser = new DOMParser();
+    const kmlXml = parser.parseFromString(kmlData, 'text/xml');
+    
+    // 3. Convert it to map markers and show it on the map
+    const kmlLayer = new L.KML(kmlXml);
+    campusGroup.addLayer(kmlLayer);
+    
+    // 4. Automatically zoom map to fit all your markers
+    map.fitBounds(kmlLayer.getBounds());
+  });
     }
 
     function triggerView(view) {
