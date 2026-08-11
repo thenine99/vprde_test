@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>[insert TITILE] - Dr. Aries</name>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.7.1155"></atom:link>
+	<StyleMap id="icon-1770-006064-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#icon-1770-006064-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#icon-1770-006064-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="icon-1770-006064-nodesc-highlight">
+		<IconStyle>
+			<Icon>
+				<href>icon-4.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Style id="icon-1770-006064-nodesc-normal">
+		<IconStyle>
+			<Icon>
+				<href>icon-4.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<StyleMap id="icon-1770-0288D1-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#icon-1770-0288D1-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#icon-1770-0288D1-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="icon-1770-0288D1-nodesc-highlight">
+		<IconStyle>
+			<Icon>
+				<href>icon-3.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Style id="icon-1770-0288D1-nodesc-normal">
+		<IconStyle>
+			<Icon>
+				<href>icon-3.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<StyleMap id="icon-1770-C2185B">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#icon-1770-C2185B-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#icon-1770-C2185B-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="icon-1770-C2185B-highlight">
+		<IconStyle>
+			<Icon>
+				<href>icon-1.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="icon-1770-C2185B-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#icon-1770-C2185B-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#icon-1770-C2185B-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="icon-1770-C2185B-nodesc-highlight">
+		<IconStyle>
+			<Icon>
+				<href>icon-1.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Style id="icon-1770-C2185B-nodesc-normal">
+		<IconStyle>
+			<Icon>
+				<href>icon-1.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Style id="icon-1770-C2185B-normal">
+		<IconStyle>
+			<Icon>
+				<href>icon-1.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="icon-1770-F9A825-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#icon-1770-F9A825-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#icon-1770-F9A825-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="icon-1770-F9A825-nodesc-highlight">
+		<IconStyle>
+			<Icon>
+				<href>icon-2.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Style id="icon-1770-F9A825-nodesc-normal">
+		<IconStyle>
+			<Icon>
+				<href>icon-2.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<StyleMap id="icon-1899-0288D1-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#icon-1899-0288D1-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#icon-1899-0288D1-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="icon-1899-0288D1-nodesc-highlight">
+		<IconStyle>
+			<Icon>
+				<href>icon-5.png</href>
+			</Icon>
+			<hotSpot x="32" y="64" xunits="pixels" yunits="insetPixels"/>
+		</IconStyle>
+		<LabelStyle>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<Style id="icon-1899-0288D1-nodesc-normal">
+		<IconStyle>
+			<Icon>
+				<href>icon-5.png</href>
+			</Icon>
+			<hotSpot x="32" y="64" xunits="pixels" yunits="insetPixels"/>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+	</Style>
+	<StyleMap id="poly-000000-1200-77-nodesc">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#poly-000000-1200-77-nodesc-normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#poly-000000-1200-77-nodesc-highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="poly-000000-1200-77-nodesc-highlight">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff000000</color>
+			<width>1.8</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4d000000</color>
+		</PolyStyle>
+	</Style>
+	<Style id="poly-000000-1200-77-nodesc-normal">
+		<BalloonStyle>
+			<text><![CDATA[<h3>$[name]</h3>]]></text>
+		</BalloonStyle>
+		<LineStyle>
+			<color>ff000000</color>
+			<width>1.2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4d000000</color>
+		</PolyStyle>
+	</Style>
+	<Folder>
+		<name>2021</name>
+		<Placemark>
+			<name>Municipality of Badiangan</name>
+			<description>April 15, 2026</description>
+			<styleUrl>#icon-1770-C2185B</styleUrl>
+			<Point>
+				<coordinates>122.5367012,10.9865874,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Mandurriao Elementary School</name>
+			<styleUrl>#icon-1770-C2185B-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5369813,10.7159142,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>bck appro</name>
+			<styleUrl>#poly-000000-1200-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							122.5479655,10.7332619,0 122.5478609,10.7331499,0 122.5480098,10.7330392,0 122.5481104,10.7331525,0 122.5479655,10.7332619,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+	<Folder>
+		<name>2022</name>
+		<Placemark>
+			<name>Polopiña National High School</name>
+			<styleUrl>#icon-1770-F9A825-nodesc</styleUrl>
+			<Point>
+				<coordinates>123.1618374,11.1995335,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Iloilo Science and Technology University</name>
+			<styleUrl>#icon-1770-F9A825-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5663464,10.7154169,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+	<Folder>
+		<name>2023</name>
+		<Placemark>
+			<name>Municipality of Carles</name>
+			<styleUrl>#icon-1770-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>123.1351527,11.552158,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Bidlisiw Foundation, Inc. - Iloilo Field Office</name>
+			<styleUrl>#icon-1770-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5370836,10.735714,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+	<Folder>
+		<name>2024</name>
+		<Placemark>
+			<name>Brgy. San Isidro, Jaro, Iloilo City</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5500014,10.7391088,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Brgy. Bitoon, Jaro Iloilo City</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5853469,10.75093,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Brgy. Culasi, Ajuy, Iloilo</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.9797339,11.074219,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Brgy. Lanit, Jaro, Iloilo City</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5697964,10.771166,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Brgy. Tabuc Suba, Jaro, Iloilo City</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5584854,10.7332078,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Brgy. Badiang, New Lucena, Iloilo</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5966549,10.8970021,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Alberto Sorongon Sr. Memorial National High School</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.6328276,10.9751364,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Bito-on Elementary School</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5898526,10.7500186,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Culasi National High School</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.9874564,11.0803647,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Iloilo Riverplains Integrated School</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5636547,10.7654295,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Iwa Macatol Elem. School</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.6317761,10.972515,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>JUDITH LAZARRAGA TIONGCO MEM. SCHOOL</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5541543,10.7332974,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>TIU CHO TEG - ANA ROS FOUNDATION INTEGRATED SCHOOL</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5708164,10.772294,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Badiang Elementary School</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5986647,10.8937973,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Culasi Elementary School</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.9797929,11.0745024,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Philippine National Volunteer Service Coordinating Agency (PNVSCA)</name>
+			<styleUrl>#icon-1770-006064-nodesc</styleUrl>
+			<Point>
+				<coordinates>121.043694,14.653619,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+	<Folder>
+		<name>Iloilo BRGYs CPU MOA</name>
+		<Placemark>
+			<name>San Rafael (bogs bh)</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5472949,10.708433,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Benedicto (jaro)</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5588389,10.7248824,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>East Baluarte</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5507084,10.6930077,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Magsaysay Village</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5620202,10.71132,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Molo Boulevard</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5492944,10.6882652,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Ingore</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5924145,10.7218807,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>North Baluarte</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5535365,10.6902251,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>West Habog-Habog</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5480571,10.6919361,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Compania</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5393954,10.6894165,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Calaparan</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5280812,10.6809166,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sto nino norte villa arevalo iloilo city</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5210091,10.680511,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Calahunan</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5245452,10.7175293,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>South Baluarte</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5507084,10.6905542,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Bolilao</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5585194,10.7112159,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Brgy. Esperanza Tanza</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5583192,10.6935103,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Salvacion Molo</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>120.9694897,14.648506,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Buntatala</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5839333,10.7695077,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+	<Folder>
+		<name>CPU</name>
+		<Placemark>
+			<name>Appropriate Technology Center</name>
+			<styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+			<Point>
+				<coordinates>122.5481336,10.7330469,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>CAMPUS MAP</name>
+			<styleUrl>#poly-000000-1200-77-nodesc</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<tessellate>1</tessellate>
+						<coordinates>
+							122.5485688,10.7336271,0 122.547732,10.73271,0 122.5474101,10.732963,0 122.546981,10.7326046,0 122.5463372,10.7315083,0 122.5471204,10.7307493,0 122.5471848,10.7304542,0 122.5470453,10.7300852,0 122.5471741,10.7296319,0 122.5471204,10.7292208,0 122.548247,10.7281772,0 122.5486868,10.7284302,0 122.5490409,10.7281245,0 122.550146,10.7280191,0 122.5524527,10.7303593,0 122.5485688,10.7336271,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>
